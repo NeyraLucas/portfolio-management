@@ -1,1 +1,128 @@
 /* You can add global styles to this file, and also import other style files */
+@use "sass:math";
+//Fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,200&display=swap');
+
+
+// Colors
+:root {
+  --font-inter: 'Poppins', sans-serif;
+  --bg--main--dark: #16181D;
+  --bg--secondary--dark: #20232A;
+  --bg--third--dark: #282C34;
+  --white: #ffff;
+  --secondary--color: #DF1D85;
+
+}
+
+//Mixin
+$max: 50;
+$offset: 5;
+$unit: 'px'; // Feel free to change the unit.
+@mixin list-loop($className, $styleName) {
+  $i: 0;
+  @while $i <= $max {
+    #{$className + $i} {
+      #{$styleName}: #{$i + $unit};
+    }
+    $i: $i + $offset;
+  }
+}
+
+//html
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-inter);
+  background: var(--bg--main--dark);
+  color: var(--white);
+}
+
+.visually-hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+// Margins
+@include list-loop('.m-t-', 'margin-top');
+@include list-loop('.m-r-', 'margin-right');
+@include list-loop('.m-b-', 'margin-bottom');
+@include list-loop('.m-l-', 'margin-left');
+@include list-loop('.m-', 'margin');
+// Paddings
+@include list-loop('.p-t-', 'padding-top');
+@include list-loop('.p-r-', 'padding-right');
+@include list-loop('.p-b-', 'padding-bottom');
+@include list-loop('.p-l-', 'padding-left');
+@include list-loop('.p-', 'padding');
+
+
+// Breakpoints
+// 640px, 1150px, 1400px
+$breakpoints-up: (
+  "medium": "40em",
+  "large": "71.875em",
+  "xlarge": "87.5em",
+);
+
+// 639px, 1149px, 1399px
+$breakpoints-down: (
+  "small": "39.9375em",
+  "medium": "71.8125em",
+  "large": "87.4375em",
+);
+
+@mixin breakpoint($size) {
+  @media (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints-down, $size)) {
+    @content;
+  }
+}
+
+//Functions
+@function rem($pixels, $context: 16) {
+  @return (math.div($pixels, $context)) * 1rem;
+}
+
+//global
+.container {
+  padding: 0 rem(25);
+  max-width: rem(1110);
+  margin: 0 auto rem(46);
+
+  @include breakpoint(large) {
+    padding: 0;
+  }
+}
+
+
+
+//links
+.icon{
+  color: var(--secondary--color);
+  border: 1px solid blue;
+}
+
+a{
+  color: var(--white);
+}
