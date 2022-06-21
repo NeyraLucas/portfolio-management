@@ -1,24 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @use "sass:math";
 //Fonts
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,200&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,200&display=swap");
 
 // Colors
 :root {
-  --font-inter: 'Poppins', sans-serif;
-  --bg--main--dark: #16181D;
-  --bg--secondary--dark: #20232A;
-  --bg--third--dark: #282C34;
+  --font-inter: "Poppins", sans-serif;
+  --bg--main--dark: #16181d;
+  --bg--secondary--dark: #20232a;
+  --bg--third--dark: #282c34;
   --white: #ffff;
-  --secondary--color: #DF1D85;
-
+  --secondary--color: #df1d85;
+  --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 //Mixin
 $max: 50;
 $offset: 5;
-$unit: 'px'; // Feel free to change the unit.
+$unit: "px"; // Feel free to change the unit.
 @mixin list-loop($className, $styleName) {
   $i: 0;
   @while $i <= $max {
@@ -39,12 +38,12 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
+  font-family: var(--font-inter);
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--font-inter);
   background: var(--bg--main--dark);
   color: var(--white);
 }
@@ -59,18 +58,17 @@ body {
 }
 
 // Margins
-@include list-loop('.m-t-', 'margin-top');
-@include list-loop('.m-r-', 'margin-right');
-@include list-loop('.m-b-', 'margin-bottom');
-@include list-loop('.m-l-', 'margin-left');
-@include list-loop('.m-', 'margin');
+@include list-loop(".m-t-", "margin-top");
+@include list-loop(".m-r-", "margin-right");
+@include list-loop(".m-b-", "margin-bottom");
+@include list-loop(".m-l-", "margin-left");
+@include list-loop(".m-", "margin");
 // Paddings
-@include list-loop('.p-t-', 'padding-top');
-@include list-loop('.p-r-', 'padding-right');
-@include list-loop('.p-b-', 'padding-bottom');
-@include list-loop('.p-l-', 'padding-left');
-@include list-loop('.p-', 'padding');
-
+@include list-loop(".p-t-", "padding-top");
+@include list-loop(".p-r-", "padding-right");
+@include list-loop(".p-b-", "padding-bottom");
+@include list-loop(".p-l-", "padding-left");
+@include list-loop(".p-", "padding");
 
 // Breakpoints
 // 640px, 1150px, 1400px
@@ -115,14 +113,323 @@ $breakpoints-down: (
   }
 }
 
-
-
-//links
-.icon{
-  color: var(--secondary--color);
-  border: 1px solid blue;
+.flex {
+  display: flex;
 }
 
-a{
+.f-row {
+  flex-direction: row;
+}
+
+.f-column {
+  flex-direction: column;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 6rem;
+  line-height: 100%;
+}
+
+h4 {
+  font-weight: 400;
+}
+
+//Colors
+.bg-primary {
+  background-color: var(--secondary--color);
+}
+
+.bg-white {
+  background-color: var(--white);
+}
+
+.bg-dark {
+  background-color: var(--bg--secondary--dark);
+}
+
+.bg-dark-second {
+  background-color: var(--bg--third--dark);
+}
+
+//text colors
+.txt-primary {
+  color: var(--secondary--color);
+}
+
+.txt-white {
   color: var(--white);
+}
+
+.txt-dark {
+  color: var(--bg--secondary--dark);
+}
+
+.txt-dark-second {
+  color: var(--bg--third--dark);
+}
+
+//weight 700 400 200
+.bold {
+  font-weight: 700;
+}
+
+.light {
+  font-weight: 200;
+}
+
+//card
+.card{
+  border-radius: 5px;
+  // box-shadow: var(--shadow);
+}
+
+//links
+.icon {
+  color: var(--secondary--color);
+}
+
+a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+//standar
+
+.debug {
+  border: 1px solid red;
+}
+
+.btn {
+  border-radius: 20px;
+  height: 3rem;
+  width: 15vw;
+  border: none;
+}
+
+//navbar
+.nav__content {
+  li {
+    padding: 0 15px;
+
+    a:hover {
+      color: var(--secondary--color);
+    }
+  }
+}
+
+//home
+.home__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.img__home {
+  // width: 400px;
+  // height: 500px;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+//images section
+.section__img {
+  height: 120px;
+
+  img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+
+//section portfolio
+.portfolio__content{
+
+  .card__projects{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 20px;
+    place-items: center;
+  }
+
+  .card__content{
+    max-height: 250px;
+    max-width: 250px;
+  }
+
+  img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+}
+
+
+//exp section
+.exp__container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  .card__exp{
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+    .title{
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .company{
+      font-size: 1rem;
+    }
+    .date{
+      font-size: 1rem;
+    }
+    .description{
+      font-size:  .75rem;
+      font-weight: lighter;
+    }
+  }
+
+}
+
+// skills section
+.container__cards__skills{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap:15px;
+
+  .title__skill{
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  .content__skills{
+
+    .skill{
+      display: grid;
+      grid-template-columns: 100px 250px 1fr;
+      gap: 20px;
+
+      .sub_skill{
+        font-size: .75rem;
+        font-weight: lighter;
+      }
+    }
+
+    .progress__bar{
+      background-color: var(--secondary--color);
+      width: 250px;
+      height: 30px;
+      border-radius: 15px;
+
+    }
+  }
+
+}
+
+
+//certifications section
+.container__cert{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+
+  .card{
+    // width: 473px;
+    width: 100%;
+    height: 180px;
+
+    display: grid;
+    grid-template-columns: 1fr 320px;
+
+    .content__img{
+      width: 100px;
+      height: 100px;
+      background-color: var(--bg--third--dark);
+      border-radius: 50%;
+
+      img{
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+  }
+
+}
+
+
+//about me section
+.container__about{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .img__about{
+    width: 500px;
+    height: 500px;
+
+    img{
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+  }
+
+  .info__about{
+    p{
+      margin: 0;
+      padding: 0;
+    }
+
+  }
+
+}
+
+.container__contact{
+  width: 580px;
+
+  .flex{
+    margin: 50px 0;
+  }
+
+  label{
+    margin-bottom: 10px;
+  }
+
+  input{
+    border-radius: 10px;
+    background-color: var(--bg--secondary--dark);
+    border: none;
+    height: 50px;
+    color: var(--white);
+    padding-left: 10px;
+  }
+  input[type="text"]::placeholder{
+    color: var(--white);
+    padding-left: 10px;
+  }
+
+  textarea{
+    border-radius: 10px;
+    background-color: var(--bg--secondary--dark);
+    border: none;
+    color: var(--white);
+    padding-left: 10px;
+  }
+
+
+
 }
